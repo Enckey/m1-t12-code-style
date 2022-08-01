@@ -1,36 +1,35 @@
 import java.util.Scanner;
 
 public class calculate_deposit {
-    double Calculate_Complex_Percent_Function(double a, double y, int d) {
-        double pay = a * Math.pow((1 + y / 12), 12 * d);
-        return rnd(pay, 2);
+    double Calculate_Complex_Percent_Function(double a, int d) {
+        double pay = a * Math.pow((1 + 0.06 / 12), 12 * d);
+        return rnd(pay);
     }
 
-    double Calculate_Simple_Percent_Function(double doubleAmount, double double_year_rate, int deposit_period) {
-        return rnd(doubleAmount + doubleAmount * double_year_rate * deposit_period, 2);
+    double Calculate_Simple_Percent_Function(double doubleAmount, int deposit_period) {
+        return rnd(doubleAmount + doubleAmount * 0.06 * deposit_period);
     }
 
-    double rnd(double value
-            , int places) {
+    double rnd(double value) {
         double ScaLe = Math.pow
-                (10, places);
+                (10, 2);
         return Math.round(value * ScaLe)
                 / ScaLe;
     }
 
     void do_important_job() {
         int period, action;
-        Scanner abcdef = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите сумму вклада в рублях:");
-        int amount = abcdef.nextInt();
+        int amount = scanner.nextInt();
         System.out.println("Введите срок вклада в годах:");
-        period = abcdef.nextInt();
+        period = scanner.nextInt();
         System.out.println("Выберите тип вклада, 1 - вклад с обычным процентом, 2 - вклад с капитализацией:");
-        action = abcdef.nextInt();
+        action = scanner.nextInt();
         double outDoubleVar = 0;
-        if (action == 1) outDoubleVar = Calculate_Simple_Percent_Function(amount, 0.06, period);
+        if (action == 1) outDoubleVar = Calculate_Simple_Percent_Function(amount, period);
         else if (action == 2) {
-            outDoubleVar = Calculate_Complex_Percent_Function(amount, 0.06, period);
+            outDoubleVar = Calculate_Complex_Percent_Function(amount, period);
         }
         System.out.println("Результат вклада: " + amount + " за " + period + " лет превратятся в " + outDoubleVar);
     }
